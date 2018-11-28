@@ -1,0 +1,25 @@
+services: docker
+language: bash
+
+env:
+  matrix:
+    - ARCH=i386
+    - ARCH=amd64
+    - ARCH=arm
+    - ARCH=arm64
+
+before_script:
+  - ./build.sh $ARCH
+  - docker run --rm --privileged multiarch/qemu-user-static:register --reset
+
+script:  
+  - docker build -t robertbeal/dasshio:$ARCH --build-arg=ARCH=$FILE --file Dockerfile.$ARCH .
+  - docker run -d --name=dasshio-$ARCH robertbeal/dasshio:$ARCH
+
+deploy:
+  provider: script
+  script:
+    echo "$DOCKER_PWD" | docker login -u "$DOCKER_USER" --password-stdin &&
+    docker push robertbeal/dasshio:$ARCH;
+  on:
+    branch: master
