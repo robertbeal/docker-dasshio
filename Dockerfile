@@ -1,5 +1,5 @@
-FROM alpine:3.7
-LABEL maintainer="rob@kohi.uk"
+FROM alpine:3.9
+LABEL maintainer="github.com/robertbeal"
 
 ARG ARCH=amd64
 
