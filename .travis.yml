@@ -6,7 +6,7 @@ env:
     - ARCH=i386
     - ARCH=amd64
     - ARCH=arm
-    - ARCH=arm64
+    - ARCH=aarch64
 
 before_script:
   - ./build.sh $ARCH
