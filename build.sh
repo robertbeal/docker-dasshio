@@ -5,11 +5,10 @@ set -euo pipefail
 arch="$1"
 
 case "$arch" in
-    i386 ) base_image="resin/i386-alpine" ;;
-    amd64 ) base_image="alpine:3.7" ;;
-    arm ) base_image="resin/rpi-alpine" ;;
-    arm64 ) base_image="resin/aarch64-alpine" ;;
+amd64) base_image="alpine:latest" ;;
+i386) base_image="balenalib/i386-alpine:latest" ;;
+arm) base_image="balenalib/armv7hf-alpine:latest" ;;
+aarch64) base_image="balenalib/aarch64-alpine:latest" ;;
 esac
 
-sed "s@alpine:\\([0-9]\\+\\).\\([0-9]\\+\\)@$base_image@g" Dockerfile > "Dockerfile.$arch"
-
+sed "1cFROM $base_image" Dockerfile >"Dockerfile.$arch"
