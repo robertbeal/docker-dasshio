@@ -14,6 +14,7 @@ RUN adduser -s /bin/false -D -h /data -u 6100 dasshio \
   && apk add --no-cache \
     curl \
     python3 \
+    py3-pip \
     tcpdump \
   && wget -O /tmp/requirements.txt https://raw.githubusercontent.com/danimtb/dasshio/master/dasshio/requirements.txt \
   && wget https://raw.githubusercontent.com/danimtb/dasshio/master/dasshio/config.json \
