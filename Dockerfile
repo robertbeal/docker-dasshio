@@ -1,4 +1,4 @@
-FROM alpine:3.13.0
+FROM alpine:3.13.1
 LABEL maintainer="github.com/robertbeal"
 
 ARG ARCH=amd64
